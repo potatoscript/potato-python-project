@@ -8,16 +8,21 @@ on:
 jobs:
   docker:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write   # IMPORTANT
+
     steps:
       - uses: actions/checkout@v4
 
-      - name: Login to DockerHub
+      - name: Login to GitHub Container Registry
         uses: docker/login-action@v3
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build & Push
+      - name: Build & Push Docker Image
         run: |
-          docker build -t yourname/potatogpt:latest apps/web
-          docker push yourname/potatogpt:latest
+          docker build -t ghcr.io/${{ github.repository }}/potatogpt:latest apps/web
+          docker push ghcr.io/${{ github.repository }}/potatogpt:latest
