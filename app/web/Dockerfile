@@ -2,6 +2,7 @@
 FROM python:3.11-slim AS builder
 
 WORKDIR /build
+
 COPY requirements.txt .
 RUN pip install --user --no-cache-dir -r requirements.txt
 
@@ -12,7 +13,7 @@ WORKDIR /app
 ENV PATH=/root/.local/bin:$PATH
 
 COPY --from=builder /root/.local /root/.local
-COPY app.py .
+COPY main.py .
 
 EXPOSE 8501
-CMD ["streamlit", "run", "app.py", "--server.address=0.0.0.0"]
+CMD ["streamlit", "run", "main.py", "--server.address=0.0.0.0"]
