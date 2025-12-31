@@ -12,8 +12,6 @@ WORKDIR /app
 ENV PATH=/root/.local/bin:$PATH
 
 COPY --from=builder /root/.local /root/.local
-
-# 👇 FIXED PATH
 COPY app/main.py ./main.py
 
 EXPOSE 8501
