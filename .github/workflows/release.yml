@@ -24,5 +24,6 @@ jobs:
 
       - name: Build & Push Docker Image
         run: |
-          docker build -t ghcr.io/${{ github.repository }}/potatogpt:latest app/web
+          docker build -f app/web/Dockerfile \
+            -t ghcr.io/${{ github.repository }}/potatogpt:latest .
           docker push ghcr.io/${{ github.repository }}/potatogpt:latest
