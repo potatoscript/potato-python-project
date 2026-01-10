@@ -252,12 +252,17 @@ At least one valid PDF is required.
 
 ---
 
-## 🥔 Final Words
+<div align="left" width="50%">
+  <div style="font-size:18px;">  🖥️ <strong>Windows Dockerfile</strong></div>
+  🧱 Big Picture: What this Dockerfile does
 
-This project is a **production-grade local AI system**, not a toy.
+This Dockerfile creates a **self-contained Linux environment** that:
 
-You now have:
+1. Has **Python 3.11**
+2. Installs **all your Python dependencies**
+3. Copies **your app code** inside
+4. Starts **Streamlit**
+5. Makes it accessible from your browser
+  <img src="https://github.com/potatoscript/MyDocuments/blob/main/Dockerfile.jpg?raw=true" width="450" />
+</div>
 
-* Real RAG
-* Real containers
-* Real AI infra skills
