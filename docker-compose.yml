@@ -1,0 +1,22 @@
+version: "3.9"
+
+services:
+  potatogpt:
+    build: .
+    image: potatogpt
+    container_name: potatogpt-app
+
+    ports:
+      - "8501:8501"
+
+    environment:
+      OLLAMA_BASE_URL: http://host.docker.internal:11434
+
+    volumes:
+      # PDFs live on your host, editable without rebuild
+      - ./app/data/pdfs:/app/data/pdfs
+
+      # Chroma DB persists across restarts
+      - ./app/data/chroma:/app/data/chroma
+
+    restart: unless-stopped
